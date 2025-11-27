@@ -17,6 +17,7 @@ const uploadOnCloudinary = async (localFilePath) => {
         })
         // file has been uploaded successfull
         //console.log("file is uploaded on cloudinary ", response.url);
+        //file gets removed from public/temp on successfull uploading of the image
         fs.unlinkSync(localFilePath)
         return response;
 
@@ -29,4 +30,3 @@ const uploadOnCloudinary = async (localFilePath) => {
 
 
 export {uploadOnCloudinary}
-
