@@ -88,7 +88,7 @@ const loginUser =asynchandler(async(req,res)=>{
   //response
   const {email,username,password}=req.body
 
-  if (!username ||!email) {
+  if (!username && !email) {
     throw new ApiError(400,"username or password is required")
   }
    const user=await User.findOne({
@@ -107,11 +107,11 @@ const loginUser =asynchandler(async(req,res)=>{
 
   const options={
     httpOnly:true,
-    secure:true
+    secure:false
   }
     return res
     .status(200)
-    .cookie("accesToken",accessToken,options)
+    .cookie("accessToken",accessToken,options)
     .cookie("refreshToken",refreshToken,options)
     .json(
       new ApiResponse(200,{
